@@ -14,38 +14,33 @@ function Form({isLoad,currentId,setCurrentId}) {
     const isLoading=isLoad;
     const dispatch=useDispatch();
     const Items=useSelector((state)=>state.listItems)
-    const selectedItem=useSelector((state)=> currentId ? state.listItems.find((itm)=>itm._id==currentId):null)
+    const selectedItem=useSelector((state)=> currentId ? state.listItems.find((itm)=>itm._id===currentId):null)
     
 
 
     useEffect(()=>{
         if(selectedItem) setItemData(selectedItem);
-       
     },[selectedItem])
 
-    const handleSubmit=()=>{ 
-
+    const handleSubmit=async()=>{ 
         const title=itemData.title
         const result = Items.find(itm => {
             return itm.title === title
           })
-
-        if(itemData.title!='' && itemData.expiry!=''){
+        if(itemData.title!=='' && itemData.expiry!==''){
             if(currentId){
-                dispatch(updateItems(currentId,itemData));
-                clear();
+               await dispatch(updateItems(currentId,itemData));
+               await clear();
             }
             else{
-                if(result==undefined){
-                    dispatch(addItems(itemData));
-                    clear();
+                if(result===undefined){
+                    await  dispatch(addItems(itemData));
+                    await  clear();
                 }
                 else{
                     alert('Already exists.')
                 }
-            }
-            
-             
+            }         
         }else{
             alert('Fill the item details before add to fridge.')
         }  

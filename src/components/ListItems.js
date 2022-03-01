@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { deleteItems } from '../actions/listItems';
 
 
-function ListItems({item,setCurrentId}) {
+function ListItems({item,setCurrentId,currentId}) {
    const [expDate,setExpDate]=useState(null)
    const dispatch=useDispatch()
 
     useEffect(()=>{
-        checkExpiryDate()
-    },[])
+        checkExpiryDate();
+    },[dispatch,currentId])
 
     const checkExpiryDate=()=>{
         var given = moment(item.expiry, "YYYY-MM-DD");

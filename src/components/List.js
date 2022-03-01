@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ListItems from './ListItems';
 
 
-function List({isLoad,setCurrentId}) {
+function List({isLoad,setCurrentId,currentId}) {
   
     
     const Items=useSelector((state)=>state.listItems)
@@ -29,7 +29,7 @@ function List({isLoad,setCurrentId}) {
                     <>
                         <div className='w-full text-right lg:mb-6 mb-3 lg:mt-0 mt-3 pr-2 lg:text-sm2 text-tiny'> Total-Items - {Items.length}</div>
                         {Items.map((item)=>(
-                            <ListItems key={item._id} item={item} setCurrentId={setCurrentId}/>
+                            <ListItems key={item._id} item={item} setCurrentId={setCurrentId} currentId={currentId}/>
                         ))}
                     </>            
                )    

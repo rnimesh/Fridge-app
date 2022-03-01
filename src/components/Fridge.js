@@ -11,7 +11,7 @@ function Fridge() {
 
     useEffect(()=>{
         getListItems();
-    },[dispatch,isLoading])
+    },[dispatch,isLoading,currentId])
 
     const getListItems =async()=>{
         await dispatch(getItems())
@@ -25,7 +25,7 @@ function Fridge() {
                 <p className='w-full text-xsm lg:text-lg  text-slate-grey font-medium tracking-tightest'>🌤 It's better to go shopping before this friday</p>
             </div>
             <Form isLoad={isLoading} currentId={currentId} setCurrentId={setCurrentId}/>
-            <List isLoad={isLoading} setCurrentId={setCurrentId}/>
+            <List isLoad={isLoading} currentId={currentId} setCurrentId={setCurrentId} />
         </div>
     );
 }

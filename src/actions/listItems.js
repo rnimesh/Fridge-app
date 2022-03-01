@@ -1,9 +1,10 @@
 import * as api from '../api'
+import {FETCH_ALL,CREATE,UPDATE,DELETE} from '../actionTypes/actionTypes'
 
 export const getItems =()=>async (dispatch)=>{
     try {
         const {data}= await api.getFridgeItems();         
-        dispatch({type:'FETCH_ALL',payload:data});
+        dispatch({type:FETCH_ALL,payload:data});
     } catch (error) {
         console.log(error)
     }
@@ -12,7 +13,7 @@ export const getItems =()=>async (dispatch)=>{
 export const addItems =(Item)=>async (dispatch)=>{
     try {
         const {data}= await api.addFridgeItems(Item);   
-        dispatch({type:'CREATE',payload:data})
+        dispatch({type:CREATE,payload:data})
     } catch (error) {
         console.log(error)
     }
@@ -21,7 +22,7 @@ export const addItems =(Item)=>async (dispatch)=>{
 export const updateItems =(id,Item)=>async (dispatch)=>{
     try {
         const {data}= await api.updateItem(id,Item);   
-        dispatch({type:'UPDATE',payload:data})
+        dispatch({type:UPDATE,payload:data})
     } catch (error) {
         console.log(error)
     }
@@ -30,7 +31,7 @@ export const updateItems =(id,Item)=>async (dispatch)=>{
 export const deleteItems =(id)=>async (dispatch)=>{
     try {
         await api.deleteItem(id);   
-        dispatch({type:'DELETE',payload:id})
+        dispatch({type:DELETE,payload:id})
     } catch (error) {
         console.log(error)
     }
