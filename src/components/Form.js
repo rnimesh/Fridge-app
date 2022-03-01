@@ -10,6 +10,7 @@ import {addItems,updateItems} from '../actions/listItems'
 
 function Form({isLoad,currentId,setCurrentId}) {
     const [startDate, setStartDate] = useState(null);
+    const [existItem, setExistItem] = useState(false);
     const [itemData,setItemData]=useState({title:'',expiry:''});
     const isLoading=isLoad;
     const dispatch=useDispatch();
@@ -38,7 +39,7 @@ function Form({isLoad,currentId,setCurrentId}) {
                     await  clear();
                 }
                 else{
-                    alert('Already exists.')
+                    setExistItem(true)
                 }
             }         
         }else{
@@ -58,7 +59,7 @@ function Form({isLoad,currentId,setCurrentId}) {
                     <label className="block uppercase tracking-wide text-gray-700 lg:text-sm text-tiny font-bold lg:mb-2 mb-1">
                     🍉 Item Name
                     </label>
-                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-tiny lg:text-md"  type="text" onChange={(e)=>{setItemData({...itemData,title:e.target.value})}} value={itemData.title}/>
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-tiny lg:text-md"  type="text" onChange={(e)=>{setItemData({...itemData,title:e.target.value});setExistItem(false)}} value={itemData.title}/>
                 </div>
                 <div className="w-full md:w-1/3 px-1 lg:px-3">
                     <label className="block uppercase tracking-wide text-gray-700 lg:text-sm text-tiny font-bold lg:mb-2 mb-1" >
@@ -73,7 +74,7 @@ function Form({isLoad,currentId,setCurrentId}) {
                 </div>
             </form>
             <div className='lg:w-full w-5/6 lg:text-xsm text-tiny  flex justify-start items-start h-1/3  lg:mx-12 mx-6 text-slate-grey lg:mt-2 mt-2 lg:px-2 px-0'>
-            ⚠️ We don't want more than one piece of the same food in our fridge.
+                {existItem ? `⚠️ We don't want more than one piece of the same food in our fridge.`: null}
             </div>
         </div>
     );
