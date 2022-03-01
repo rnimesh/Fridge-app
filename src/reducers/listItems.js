@@ -1,10 +1,5 @@
 import {FETCH_ALL,CREATE,UPDATE,DELETE} from '../actionTypes/actionTypes'
 
-// const initialState={
-//     listItems:[],
-//     alertTrue:false
-// }
-
 export default (listItems=[],action) => {
     switch(action.type){
         case FETCH_ALL:
