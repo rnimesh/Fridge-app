@@ -65,7 +65,7 @@ function Form({isLoad,currentId,setCurrentId}) {
                     <label className="block uppercase tracking-wide text-gray-700 lg:text-sm text-tiny font-bold lg:mb-2 mb-1" >
                     ⏰ Expiry Date
                     </label>
-                    <DatePicker className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-tiny lg:text-md" format='yyyy-MM-dd'  selected={startDate} onChange={(date) => { setStartDate(date) ;setItemData({...itemData,expiry:moment(date).format('YYYY-MM-DD')})}} value={itemData.expiry}/>
+                    <DatePicker minDate={new Date()} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-tiny lg:text-md" format='yyyy-MM-dd'  selected={startDate} onChange={(date) => { setStartDate(date) ;setItemData({...itemData,expiry:moment(date).format('YYYY-MM-DD')})}} value={itemData.expiry}/>
                 </div>
                 <div className="w-full md:w-1/3 px-1 lg:px-3" onClick={()=>handleSubmit()}>
                     <button disabled={isLoading} className="flex-shrink-0 bg-dark-cerulean hover:bg-prussian-blue border-dark-cerulean hover:border-prussian-blue lg:text-sm text-tiny border-4 text-white py-1 px-2 w-4/5 rounded" type="button">
