@@ -10,13 +10,12 @@ function Fridge() {
     const dispatch =useDispatch();
 
     useEffect(()=>{
-        getListItems();
+        (async () => {
+                await dispatch(getItems())
+                await setIsLoading(false)
+           })();
     },[dispatch,isLoading,currentId])
 
-    const getListItems =async()=>{
-        await dispatch(getItems())
-        await setIsLoading(false)
-    }
 
     return (
         <div className='w-full h-full flex justify-center items-center flex-col py-10'>
@@ -25,7 +24,7 @@ function Fridge() {
                 <p className='w-full text-xsm lg:text-lg  text-slate-grey font-medium tracking-tightest'>🌤 It's better to go shopping before this friday</p>
             </div>
             <Form isLoad={isLoading} currentId={currentId} setCurrentId={setCurrentId}/>
-            <List isLoad={isLoading} currentId={currentId} setCurrentId={setCurrentId} />
+            <List isLoad={isLoading} setCurrentId={setCurrentId} />
         </div>
     );
 }

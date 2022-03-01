@@ -1,6 +1,6 @@
 import {FETCH_ALL,CREATE,UPDATE,DELETE} from '../actionTypes/actionTypes'
 
-export default (listItems=[],action) => {
+export const listItems= (listItems=[],action) => {
     switch(action.type){
         case FETCH_ALL:
             return action.payload;
